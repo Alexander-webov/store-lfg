@@ -1,10 +1,17 @@
-import { Button } from "@/components/ui/button";
+import LoadingContainer from "@/components/global/LoadingContainer";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import Hero from "@/components/home/Hero";
+
+import { Suspense } from "react";
+
 function HomePage() {
   return (
-    <div className="text-muted-foreground">
-      HomePage
-      <Button>Click me</Button>
-    </div>
+    <>
+      <Hero />
+      <Suspense fallback={<LoadingContainer />}>
+        <FeaturedProducts />
+      </Suspense>
+    </>
   );
 }
 
