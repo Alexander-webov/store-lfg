@@ -1954,14 +1954,14 @@ export default CreateProductPage;
 ### Form Components - Setup
 
 - components/form
-  - Buttons
-  - CheckBoxInput
-  - FormContainer
-  - FormInput
-  - ImageInput
-  - ImageInputContainer
-  - PriceInput
-  - TextAreaInput
+  - Buttons.tsx
+  - CheckBoxInput.tsx
+  - FormContainer.tsx
+  - FormInput.tsx
+  - ImageInput.tsx
+  - ImageInputContainer.tsx
+  - PriceInput.tsx
+  - TextAreaInput.tsx
 
 FormInput.tsx
 

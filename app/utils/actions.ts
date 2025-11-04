@@ -1,8 +1,17 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import db from "./db";
+import { currentUser } from "@clerk/nextjs/server";
+
+const getAuthUser = async () => {
+  const user = await currentUser();
+  if (!user) redirect("/");
+  return user;
+};
 
 export const fetchFeaturedProducts = async () => {
-  const products = await db.product.findMany({
+  const products = db.product.findMany({
     where: {
       featured: true,
     },
@@ -10,8 +19,8 @@ export const fetchFeaturedProducts = async () => {
   return products;
 };
 
-export const fetchAllProducts = ({ search = "" }: { search: string }) => {
-  return db.product.findMany({
+export const fetchAllProducts = async ({ search = "" }: { search: string }) => {
+  return await db.product.findMany({
     where: {
       OR: [
         {
@@ -38,4 +47,36 @@ export const fetchSingleProduct = async (productId: string) => {
     redirect("/products");
   }
   return product;
+};
+
+export const createProductAction = async (
+  prevStat: any,
+  fromDate: FormData
+): Promise<{ message: string }> => {
+  const user = await getAuthUser();
+
+  try {
+    const name = fromDate.get("name") as string;
+    const company = fromDate.get("company") as string;
+    const price = Number(fromDate.get("price") as string);
+    const image = fromDate.get("image") as File;
+    const description = fromDate.get("description") as string;
+    const featured = Boolean(fromDate.get("featured") as string);
+
+    await db.product.create({
+      data: {
+        name,
+        company,
+        price,
+        image: "/images/1.webp",
+        description,
+        featured,
+        clerkId: user.id,
+      },
+    });
+
+    return { message: "roduct created" };
+  } catch {
+    return { message: "there was an error" };
+  }
 };
