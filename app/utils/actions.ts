@@ -50,7 +50,7 @@ export const fetchSingleProduct = async (productId: string) => {
 };
 
 export const createProductAction = async (
-  prevStat: any,
+  prevStat: string,
   fromDate: FormData
 ): Promise<{ message: string }> => {
   const user = await getAuthUser();
