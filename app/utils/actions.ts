@@ -59,6 +59,7 @@ export const createProductAction = async (
     const name = fromDate.get("name") as string;
     const company = fromDate.get("company") as string;
     const price = Number(fromDate.get("price") as string);
+    const image = fromDate.get("image") as File;
     const description = fromDate.get("description") as string;
     const featured = Boolean(fromDate.get("featured") as string);
 
