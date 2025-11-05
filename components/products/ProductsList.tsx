@@ -5,7 +5,7 @@ import { Product } from "@prisma/client";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
 
-function ProductsList({ products }: { products: Product }) {
+function ProductsList({ products }: { products: Product[] }) {
   return (
     <div className="mt-12 grid gap-y-8">
       {products.map((product) => {

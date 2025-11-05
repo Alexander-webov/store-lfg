@@ -15,7 +15,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
         return (
           <article key={productId} className="group relative">
             <div className="absolute right-7 top-7 z-5">
-              <FavoriteToggleButton />
+              <FavoriteToggleButton productId={productId} />
             </div>
             <Link href={`/products/${productId}`}>
               <Card className="transform group-hover:shadow-xl transition-shadow duration-500">

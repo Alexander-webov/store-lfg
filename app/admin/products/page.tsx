@@ -1,5 +1,3 @@
-import React from "react";
-
 function AdminProductsPage() {
   return <div>Admin Products Page</div>;
 }
